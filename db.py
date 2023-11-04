@@ -54,6 +54,3 @@ def add_ticket(name, phone, message):
         if (sqlite_connection):
             sqlite_connection.close()
             # print("Соединение с SQLite закрыто")
-
-create_db()
-create_tickets_table()
