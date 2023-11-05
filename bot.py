@@ -6,7 +6,8 @@ import telebot
 import db
 
 app = Flask(__name__)
-CORS(app)
+CORS(app) # SOOQA не работает. Надо придумать чота с корсами....
+# TODO: Починить корсы
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
