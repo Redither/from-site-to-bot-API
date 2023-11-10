@@ -5,8 +5,8 @@ from flask_cors import CORS
 import telebot
 import db
 
-app = Flask(__name__)
-CORS(app) # SOOQA не работает. Надо придумать чота с корсами....
+application = Flask(__name__)
+CORS(application) # SOOQA не работает. Надо придумать чота с корсами....
 # TODO: Починить корсы
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -23,7 +23,7 @@ bot = telebot.TeleBot(bot_token)
 
 
 # Обработчик для эндпоинта
-@app.route('/ticket', methods=['POST'])
+@application.route('/ticket', methods=['POST'])
 # @cross_origin()
 def submit_form():
     name = request.form['name']
@@ -42,4 +42,4 @@ def submit_form():
 
 # Запускаем сервер
 if __name__ == '__main__':
-    app.run()
+    application.run()
