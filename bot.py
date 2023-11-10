@@ -20,6 +20,11 @@ chat_id = os.environ.get('YOUR_TELEGRAM_CHAT_ID')
 bot = telebot.TeleBot(bot_token)
 
 
+
+@application.route("/")
+def hello():
+   return "<h1 style='color:blue'>Hello There!</h1>"
+
 # Обработчик для эндпоинта
 @application.route('/ticket', methods=['POST'])
 # @cross_origin()
