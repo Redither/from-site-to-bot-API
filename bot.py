@@ -13,10 +13,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-# bot_token = 'YOUR_TELEGRAM_BOT_TOKEN'
-bot_token = '6011770930:AAFgUjTWm5KyY31IEWr0Sr9x1Cyl8lhSOH4'
-# chat_id = 'YOUR_TELEGRAM_CHAT_ID'
-chat_id = '477297060'
+bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+chat_id = os.environ.get('YOUR_TELEGRAM_CHAT_ID')
 
 # Создаем экземпляр бота
 bot = telebot.TeleBot(bot_token)
