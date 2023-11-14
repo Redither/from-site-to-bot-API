@@ -23,15 +23,21 @@ bot = telebot.TeleBot(bot_token)
 
 @application.route("/")
 def hello():
-   return "<h1 style='color:blue'>Hello There!</h1>"
+   response = "<h1 style='color:blue'>Hello There!</h1>"
+#    response.headers.add("Access-Control-Allow-Origin", "*")
+   return response
 
 # Обработчик для эндпоинта
-@application.route('/ticket', methods=['POST'])
-# @cross_origin()
+@application.route('/api/ticket', methods=['POST'])
 def submit_form():
-    name = request.form['name']
-    phone = request.form['phoner']
-    message = request.form['message']
+    json = request.get_json()
+    print(json)
+    # name = request.form['name']
+    name = json['name']
+    # phone = request.form['phoner']
+    phone = json['phoner']
+    # message = request.form['message']
+    message = json['message']
 
     # Сохраняем данные в базу данных
     db.add_ticket(name, phone, message)
@@ -41,8 +47,10 @@ def submit_form():
     message = f"New request:\nPhone number: {phone}\nMessage: {message}"
     bot.send_message(chat_id, message)
 
-    return 'Request submitted'
+    response = 'Request submitted'
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 # Запускаем сервер
 if __name__ == '__main__':
-    application.run()
+    application.run(host="0.0.0.0", port="5000", debug=True)
